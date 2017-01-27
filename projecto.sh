@@ -1,4 +1,10 @@
 #!/bin/bash
 
-cd /home/ryan/projects/projecto_cplus/
-/home/ryan/projects/projecto_cplus/./projecto
+#currentDir=$(pwd)
+#DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+#cd $DIR
+#cd ..
+#cd projects/projecto_cplus
+#./projecto
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+$DIR/../projects/projecto_cplus/./projecto
