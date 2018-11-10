@@ -5,6 +5,10 @@ import subprocess
 import os
 
 def main(username, password, commit_msg):
+
+    if os.path.isfile("~/.credentials"):
+        print("exits")
+
     current_folder = os.path.relpath('.', '..')
     url = "https://" + username + ":" + password + "@github.com/" + username + "/" + current_folder + ".git"
 
