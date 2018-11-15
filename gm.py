@@ -33,7 +33,14 @@ def save(username, password):
     output,error = process.communicate()
 
 def pull(username, password):
-    print("test")
+    url = "https://" + username + ":" + password + "@github.com/" + username + "/" + current_folder + ".git"
+
+    command = "git pull " + url
+    command = command.split()
+    command.append("\"" + commit_msg + "\"")
+
+    process = subprocess.Popen(command)
+    output,error = process.communicate()
 
 commands = {'-s': save, '-p': pull}
 
