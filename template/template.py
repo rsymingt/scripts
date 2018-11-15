@@ -13,7 +13,7 @@ def main(command):
         print("template does not exist")
 
 if __name__ == '__main__':
-    if len(sys.argv) <= 1:
+    if len(sys.argv) <= 2:
         sys.exit("please enter template name or -h")
 
     command = 0
