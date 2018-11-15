@@ -10,7 +10,7 @@ credentials = expanduser("~") + "/.credentials"
 current_folder = os.path.relpath('.', '..')
 
 def save(username, password):
-    commit_msg = raw_input("enter in commit: ")
+    commit_msg = raw_input("Enter in Commit Message: ")
 
     url = "https://" + username + ":" + password + "@github.com/" + username + "/" + current_folder + ".git"
 
