@@ -13,13 +13,13 @@ def main(command):
         print("template does not exist")
 
 if __name__ == '__main__':
-    if len(sys.argv) <= 2:
-        sys.exit("please enter template name or --help")
+    if len(sys.argv) <= 1:
+        sys.exit("please enter template name or -h")
 
     command = 0
     if len(sys.argv) >= 3:
-        command = sys.argv[2]
         loc = sys.argv[1]
+        command = sys.argv[2]
     else:
         command = sys.argv[1]
 
