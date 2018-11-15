@@ -43,26 +43,26 @@ def main():
         sys.exit(command + " does not exist, type -h")
 
 
-    if os.path.isfile(credentials):
-        if(len(sys.argv) >= 2):
-            commit_msg = sys.argv[1]
-            with open(credentials) as json_data:
-                creds = json.load(json_data)
-                if all (key in creds for key in ("username", "password")):
-                    username, password = creds['username'], creds['password']
-                else:
-                    print("error in creds in ~/.credentials")
-            save(username, password, commit_msg)
-        else:
-            print("please enter <commit name>")
-    else:
-        if(len(sys.argv) >= 4):
-            username = sys.argv[1]
-            password = sys.argv[2]
-            commit_msg = sys.argv[3]
-            save(username, password, commit_msg)
-        else:
-            print("please enter <username> <password> <commit name>")
+    # if os.path.isfile(credentials):
+    #     if(len(sys.argv) >= 2):
+    #         commit_msg = sys.argv[1]
+    #         with open(credentials) as json_data:
+    #             creds = json.load(json_data)
+    #             if all (key in creds for key in ("username", "password")):
+    #                 username, password = creds['username'], creds['password']
+    #             else:
+    #                 print("error in creds in ~/.credentials")
+    #         save(username, password, commit_msg)
+    #     else:
+    #         print("please enter <commit name>")
+    # else:
+    #     if(len(sys.argv) >= 4):
+    #         username = sys.argv[1]
+    #         password = sys.argv[2]
+    #         commit_msg = sys.argv[3]
+    #         save(username, password, commit_msg)
+    #     else:
+    #         print("please enter <username> <password> <commit name>")
 
 
 
