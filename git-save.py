@@ -7,6 +7,7 @@ import json
 from os.path import expanduser
 
 credentials = expanduser("~") + "/.credentials"
+commands = ['-s', '-p', '-h']
 
 def save(username, password, commit_msg):
     current_folder = os.path.relpath('.', '..')
@@ -31,6 +32,17 @@ def save(username, password, commit_msg):
     output,error = process.communicate()
 
 def main():
+    is_cred = os.path.isfile(credentials)
+    command = false
+
+    if len(sys.argv) < 2:
+        sys.exit('please enter <option> <arguments>')
+
+    command = sys.argv[1]
+    if command not in commands:
+        sys.exit(command + " does not exist, type -h")
+
+
     if os.path.isfile(credentials):
         if(len(sys.argv) >= 2):
             commit_msg = sys.argv[1]
