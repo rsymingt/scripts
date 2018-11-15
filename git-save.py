@@ -9,7 +9,7 @@ from os.path import expanduser
 credentials = expanduser("~") + "/.credentials"
 
 def save(username, password):
-    commit_msg = "\"" + raw_input("enter in commit: ") + "\""
+    commit_msg = raw_input("enter in commit: ")
     current_folder = os.path.relpath('.', '..')
     url = "https://" + username + ":" + password + "@github.com/" + username + "/" + current_folder + ".git"
 
