@@ -37,7 +37,6 @@ def pull(username, password):
 
     command = "git pull " + url
     command = command.split()
-    command.append("\"" + commit_msg + "\"")
 
     process = subprocess.Popen(command)
     output,error = process.communicate()
