@@ -7,11 +7,11 @@ import json
 from os.path import expanduser
 
 credentials = expanduser("~") + "/.credentials"
+current_folder = os.path.relpath('.', '..')
 
 def save(username, password):
     commit_msg = raw_input("enter in commit: ")
 
-    current_folder = os.path.relpath('.', '..')
     url = "https://" + username + ":" + password + "@github.com/" + username + "/" + current_folder + ".git"
 
     command = "git add ."
