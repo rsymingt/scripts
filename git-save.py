@@ -8,8 +8,7 @@ from os.path import expanduser
 
 credentials = expanduser("~") + "/.credentials"
 
-def main(username, password, commit_msg):
-
+def save(username, password, commit_msg):
     current_folder = os.path.relpath('.', '..')
     url = "https://" + username + ":" + password + "@github.com/" + username + "/" + current_folder + ".git"
 
@@ -31,7 +30,7 @@ def main(username, password, commit_msg):
     process = subprocess.Popen(command.split())
     output,error = process.communicate()
 
-if __name__ == '__main__':
+def main():
     if os.path.isfile(credentials):
         if(len(sys.argv) >= 2):
             commit_msg = sys.argv[1]
@@ -41,7 +40,7 @@ if __name__ == '__main__':
                     username, password = creds['username'], creds['password']
                 else:
                     print("error in creds in ~/.credentials")
-            main(username, password, commit_msg)
+            save(username, password, commit_msg)
         else:
             print("please enter <commit name>")
     else:
@@ -49,6 +48,11 @@ if __name__ == '__main__':
             username = sys.argv[1]
             password = sys.argv[2]
             commit_msg = sys.argv[3]
-            main(username, password, commit_msg)
+            save(username, password, commit_msg)
         else:
             print("please enter <username> <password> <commit name>")
+
+
+
+if __name__ == '__main__':
+    main();
