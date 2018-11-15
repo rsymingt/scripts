@@ -10,6 +10,7 @@ credentials = expanduser("~") + "/.credentials"
 
 def save(username, password):
     commit_msg = raw_input("enter in commit: ")
+
     current_folder = os.path.relpath('.', '..')
     url = "https://" + username + ":" + password + "@github.com/" + username + "/" + current_folder + ".git"
 
@@ -31,39 +32,44 @@ def save(username, password):
     process = subprocess.Popen(command.split())
     output,error = process.communicate()
 
-def pull():
+def pull(username, password):
     print("test")
 
-def help():
-    print("test")
+commands = {'-s': save, '-p': pull}
 
-commands = {'-s': save, '-p': pull, '-h': help}
+def help(username, password):
+    for key,value in commands.iteritems():
+        if key == '-h':
+            continue
+
+        print(key)
 
 def main():
+    commands['-h'] = help
     is_cred = os.path.isfile(credentials)
     command = 0
 
     if len(sys.argv) < 2:
-        sys.exit('please enter <option> <arguments>')
+        sys.exit('please enter <option> <arguments>, type -h for list of commands')
 
     command = sys.argv[1]
     if command not in commands:
         sys.exit("\"" + command + "\" does not exist, type -h for list of commands")
 
     if is_cred:
+        username, password = "", ""
         with open(credentials) as json_data:
             creds = json.load(json_data)
             if all (key in creds for key in ("username", "password")):
                 username, password = creds['username'], creds['password']
             else:
                 print("error in creds in ~/.credentials")
-        save(username, password)
+        commands[command](username, password)
     else:
-        if(len(sys.argv) >= 4):
+        if(len(sys.argv) >= 3):
             username = sys.argv[1]
             password = sys.argv[2]
-            commit_msg = sys.argv[3]
-            # save(username, password, commit_msg)
+            commands[command](username, password)
         else:
             print("please enter <username> <password>")
 
