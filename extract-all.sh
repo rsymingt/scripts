@@ -16,7 +16,7 @@ for f in **/*.rar; do
     extractFolder="${f%.*}"
     mkdir $extractFolder
 
-    unrar e -o- "$f" $extractFolder
+    unrar e -o+ "$f" $extractFolder
 
     if [ $? -eq 0 ]; then
         echo 'success'
