@@ -13,7 +13,8 @@ echo $delete
 
 shopt -s globstar
 for f in **/*.rar; do
-    extractFolder="${f%.*}"
+    # extractFolder="${f%.*}"
+    extractFolder=$(dirname $f)
     mkdir $extractFolder
 
     unrar e -o+ "$f" $extractFolder
