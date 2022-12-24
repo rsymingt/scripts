@@ -1,13 +1,5 @@
 #!/bin/bash
 
-$fp = fopen('/tmp/lock.txt', 'w');
-
-if(!flock($fp, LOCK_EX | LOCK_NB)) {
-    echo 'Unable to obtain lock';
-    exit(-1);
-}
-
-
 delete=false
 
 while getopts d flag
@@ -34,6 +26,3 @@ for f in **/*.rar; do
     fi
 
 done
-
-
-fclose($fp);
